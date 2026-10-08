@@ -4,8 +4,10 @@ date: 2026-03-09
 slug: python
 categories:
     - python
+    - py
 tags:
     - python
+    - py
 ---
 
 ## 查看安装路径
@@ -18,6 +20,15 @@ py -0p
 
 ## py 查看安装目录
 [参考](https://blog.csdn.net/K_Duke/article/details/85220872)
+
+## pip
+### uv
+[中文文档](https://uv.doczh.com/)
+安装
+```shell
+pip install uv
+```
+
 ## pip 命令
 ```shell
 # 更新

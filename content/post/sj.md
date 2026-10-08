@@ -23,6 +23,10 @@ wifiman
 门卡(MifareClassicTool)
 https://raw.githubusercontent.com/ikarus23/MifareClassicTool/master/CHANGELOG.txt
 
+## sukisu
+### 版本升级
+apk安装后 -> 直接安装 -> 重启
+
 ## 手机
 k90pm
 https://www.123865.com/s/NZ8uVv-N4EpH?notoken=1

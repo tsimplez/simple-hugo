@@ -53,7 +53,8 @@ PlatformIO Core Directory 就是自己想要的了
 
 [参考](https://www.echo.cool/docs/category/arduino-%E6%95%99%E7%A8%8B)
 
-[esp32文档](https://wiki.luatos.com/chips/esp32c3/index.html)
+[esp32 c3](https://wiki-zh.luatos.org/chips/esp32c3/board.html)
+
 
 [Clion配置ESP32开发](https://blog.csdn.net/m0_52162042/article/details/142099459)
 
@@ -88,8 +89,6 @@ pio project init --board airm2m_core_esp32c3
 ```
 
 ### esp32 c3
-[文档](https://wiki.luatos.com/chips/esp32c3/board.html)
-
 [pwm问题](https://blog.csdn.net/qq_42679566/article/details/119549859)
 [pwm问题1](https://blog.csdn.net/qq_57139623/article/details/139859580)
 
@@ -177,7 +176,6 @@ monitor_speed = 74880
 
 ## esp32s3
 [嘉立创开发板](https://wiki.lckfb.com/zh-hans/esp32s3r8n8/)
-
 
 ## 灯带遥控器
 加亮度  上3 下8

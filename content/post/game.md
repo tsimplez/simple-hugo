@@ -9,6 +9,10 @@ tags:
     - game
 ---
 
+## 必须
+[steam](https://store.steampowered.com) huyajiandan
+
+## 其他
 [fitgirl](https://fitgirl-repacks.site/)
 [byrut](https://byrutgame.org/)
 

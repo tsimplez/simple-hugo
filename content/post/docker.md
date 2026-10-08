@@ -8,6 +8,13 @@ tags:
     - docker
 ---
 
+## 必须
+
+### 安装
+https://www.runoob.com/docker/windows-docker-install.html
+https://docs.docker.com/desktop/setup/install/windows-install/
+
+## 其他
 [Webtop 浏览器的Linux桌面环境](https://zhuanlan.zhihu.com/p/1984562670469396019)
 
 ## 下载慢
@@ -16,7 +23,7 @@ tags:
 
 [获取地址 Portainer](https://www.portainer.cn/)
 
-# 编辑
+## 编辑
 sudo vi /etc/docker/daemon.json
 ```shell
 {
@@ -56,7 +63,6 @@ sudo systemctl daemon-reload
 sudo systemctl restart docker
 ```
 
-
 ## 可视化管理面板
 [dpanel](https://dpanel.cc/)
 
@@ -77,12 +83,12 @@ wud 太复杂了
 >Docker 可以让开发者打包他们的应用以及依赖包到一个轻量级、可移植的容器中，然后发布到任何流行的 Linux 机器上，也可以实现虚拟化。
 >容器是完全使用沙箱机制，相互之间不会有任何接口（类似 手机 的 app）,更重要的是容器性能开销极低
 
-# win汉化
-[推荐](https://github.com/asxez/DockerDesktop-CN)
-# 配置
+[win汉化](https://github.com/asxez/DockerDesktop-CN)
+
+## 配置
 ```json
-buildkit 并行构建、缓存优化
-containerd-snapshotter 断点续传
+// buildkit 并行构建、缓存优化
+// containerd-snapshotter 断点续传
 {
   "features": {
     "buildkit": true,
@@ -109,18 +115,19 @@ https://docker.xuanyuan.me
   ]
 }
 ```
-# Ubuntu
+## Ubuntu
 [在 Ubuntu 上安装 Docker Engine](https://docs.docker.com/engine/install/ubuntu/)
 [下载文件地址](https://download.docker.com/linux/ubuntu/dists/xenial/pool/stable/armhf/)
-# D-Bus 问题
+## D-Bus 问题
 [参考](https://blog.csdn.net/u013084266/article/details/125116798)
 ```shell
 # 替换 重启
 curl https://raw.githubusercontent.com/gdraheim/docker-systemctl-replacement/master/files/docker/systemctl.py > /usr/bin/systemctl
 chmod +x /usr/bin/systemctl
 ```
-# 安装Docker
+## 安装Docker
 [Ubuntu参考](https://zhuanlan.zhihu.com/p/143156163)
+
 ## centos
 ```shell
 sudo yum -y install yum-utils device-mapper-persistent-data lvm2 gcc gcc-c++
@@ -173,7 +180,7 @@ sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg docker.gpg
 echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 
 ```
-# 基本操作
+## 基本操作
 和[linux服务命令](https://blog.csdn.net/weixin_44193021/article/details/118966577)一样
 如: systemctl status docker ...
 | 操作 | 命令 |
@@ -181,7 +188,7 @@ echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docke
 | 查看版本号信息 | docker -v |
 | 查看版本号信息（详细） | docker version |
 | 查看详细信息 | docker info |
-# 镜像操作
+## 镜像操作
 | 命令 | 操作 |
 |--|--|
 | 查看所有镜像 | docker images |
@@ -202,7 +209,7 @@ run 命令
 - --volume , -v ： 绑定一个卷（如 [ -v 宿主机目录:/容器目录 ]）
 - --net ： 配置网络模式（如 --net brigge ）
 
-# 容器操作
+## 容器操作
 基本命令 docker start | stop | restart | rm 容器标识
 参数说明
 | 操作 | 命令 |
@@ -223,7 +230,7 @@ exec 命令
 - -i ： 即使未连接，也保持标准输入打开
 - -t ： 分配一个伪终端
 
-# 文件拷贝
+## 文件拷贝
 - 将宿主机的文件拷贝到容器中 ： docker cp  宿主机文件路径 镜像标识:容器路径
  ```shell
 如 ： docker cp /etc/docker/nginx/nginx.config nginx:/etc/nginx/
@@ -233,12 +240,12 @@ exec 命令
 如 ： docker cp nginx:/etc/nginx/nginx.config /etc/docker/nginx/
 ```
 
-# 查看容器映射路径
+## 查看容器映射路径
 ```
 docker inspect container_name | grep Mounts -A 20
 docker inspect container_id | grep Mounts -A 20
 ```
-# 日志
+## 日志
 docker logs 参数 镜像标识
 参数
 - --since : 此参数指定了输出日志开始日期，即只输出指定日期之后的日志
@@ -262,14 +269,14 @@ done
 
 echo "======== end clean docker containers logs ========"
 ```
-# 网络
-## 网络模式
+## 网络
+### 网络模式
 - bridge ： 桥接（默认）
 - none ：  不配置网络
 - host ： 和宿主机共享
 - container ： 容器网络连通（用的少）
-## 创建网络
-### 参数
+### 创建网络
+#### 参数
 - --driver 使用的网络模式
 - --subnet 子网
 - --gateway 网关

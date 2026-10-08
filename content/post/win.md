@@ -10,6 +10,22 @@ tags:
 ---
 
 ## 必须
+[网易云](https://music.163.com)
+
+[MuMu模拟器](https://mumu.163.com)
+
+[图吧工具箱](https://www.tbtool.cn)
+
+[游戏加加](https://gamepp.com/download.html)
+
+[网速监控](https://github.com/zhongyang219/TrafficMonitor)
+
+https://github.com/clash-verge-rev/clash-verge-rev
+
+https://www.jetbrains.com.cn/toolbox-app
+
+IDM
+
 显卡驱动
 
 ## 其他
@@ -38,10 +54,27 @@ Business editions包括：企业版、教育版、专业版；
 而GUID就是新兴的GPT方式，支持的主分区数量没有限制；MBR支持win7版本系统以下的32位和64位，
 而GUID支持win7版本以上的64位系统，不支持32位系统。”
 
+## 解压
+[winrar](http://www.winrar.com.cn)
+
+## ssh
+```shell
+ssh-keygen -t rsa
+
+用户名/.ssh/id_rsa.pub
+
+/.ssh/authorized_keys 或者 设置中
+
+```
+
 ## 工具
 ### 剪切板
 https://github.com/jimuzhe/tiez-clipboard
 https://github.com/EcoPasteHub/EcoPaste
+
+### ffmpeg
+https://ffmpeg.org/download.html
+release bulids
 
 ## 命令行工具 PowerShell
 快捷方式 wt

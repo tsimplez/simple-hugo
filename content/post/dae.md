@@ -27,6 +27,8 @@ dns googledns https://dns.google:443
 ```
 # 参考 https://github.com/daeuniverse/dae/blob/main/docs/zh/configuration/routing.md
 # 路由 新增配置
+sip(192.168.2.33) -> direct
+
 domain(suffix: argotunnel.com) -> direct
 dport(7844) -> direct
 

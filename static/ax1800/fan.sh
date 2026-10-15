@@ -34,7 +34,8 @@ temp_to_speed() {
 	if   [ "$t" -ge 70 ]; then echo 100
 	elif [ "$t" -ge 65 ]; then echo 80
 	elif [ "$t" -ge 60 ]; then echo 50
-	elif [ "$t" -ge 50 ]; then echo 20
+	elif [ "$t" -ge 50 ]; then echo 30
+	elif [ "$t" -ge 40 ]; then echo 20
 	else echo 0
 	fi
 }
@@ -48,7 +49,7 @@ SELF="$(cd "$(dirname "$0")" 2>/dev/null && pwd)/$(basename "$0")"
 
 # 取所有温区里最高的温度，单位摄氏度
 read_temp() {
-	awk '{ if ($1 > m) m = $1 } END { printf "%d", (m + 0) / 1000 }' /sys/class/thermal/thermal_zone*/temp 2>/dev/null
+	awk 'BEGIN{m=-999999} { if ($1+0 > m) m=$1+0 } END { if (m == -999999) m=0; printf "%d", m/1000 }' /sys/class/thermal/thermal_zone*/temp 2>/dev/null
 }
 
 # 设置风速：set_pwm <0~100>
@@ -63,7 +64,9 @@ set_pwm() {
 	else
 		on=$(( $1 * PERIOD_MS / 100 ))
 	fi
-	echo timer > "$LED/trigger"
+	if ! grep -q '\[timer\]' "$LED/trigger" 2>/dev/null; then
+      echo timer > "$LED/trigger" || return 1
+  fi
 	echo "$on" > "$LED/delay_on"
 	echo "$(( PERIOD_MS - on ))" > "$LED/delay_off"
 }
@@ -76,18 +79,25 @@ nap() {
 
 # 后台主循环：一直盯着温度调风速
 daemon() {
-	set_pwm 0
-	nap "$BOOT_DELAY"
+  if [ -f /tmp/fan_nodelay ]; then
+      rm -f /tmp/fan_nodelay
+  else
+      nap "$BOOT_DELAY"
+  fi
 	cur=-1
 	while :; do
 		# 有人手动调过（fs N / fs auto），丢掉缓存重新算
 		if [ -f "$FORCE" ]; then rm -f "$FORCE"; cur=-1; fi
 		if [ -f "$MANUAL" ]; then
 			spd="$(cat "$MANUAL" 2>/dev/null)"
-			why=手动
+      case "$spd" in
+        ''|*[!0-9]*) spd=0 ;;
+      esac
+      [ "$spd" -gt 100 ] && spd=100
+      why=手动
 		else
 			t="$(read_temp)"
-			case "$t" in ''|*[!0-9]*) t=0 ;; esac
+			case "$t" in ''|*[!0-9-]*) t=0 ;; esac
 			spd="$(temp_to_speed "$t")"
 			[ "$spd" -lt "$cur" ] && spd="$(temp_to_speed "$t" "$HYS")"
 			why="${t}℃"
@@ -109,7 +119,11 @@ show_status() {
 	else
 		echo "风速     : $(temp_to_speed "$t")%  (按温度自动)"
 	fi
-	echo "风扇引脚 : $LED   (引脚高电平=风扇停，低电平=风扇满速)"
+	if [ "$FAN_LOW" = 1 ]; then
+      echo "风扇引脚 : $LED   (高电平=停，低电平=满速)"
+  else
+      echo "风扇引脚 : $LED   (低电平=停，高电平=满速)"
+  fi
 	echo "PWM 周期 : ${PERIOD_MS}ms"
 	if [ -x /etc/init.d/fs ]; then
 		if /etc/init.d/fs running >/dev/null 2>&1; then
@@ -123,13 +137,7 @@ show_status() {
 install() {
 	echo "== 安装 fan.sh =="
 
-	# 旧的温度灯程序会占用同一个引脚，先清掉
-#	if [ -x /etc/init.d/fan ]; then
-#		/etc/init.d/fan stop 2>/dev/null
-#		/etc/init.d/fan disable 2>/dev/null
-#		rm -f /etc/init.d/fan
-#		echo "· 已清理旧的 led 服务"
-#	fi
+	: > /tmp/fan_nodelay
 
 	if [ "$SELF" != "$DAEMON" ]; then
 		cp "$SELF" "$DAEMON" || { echo "复制到 $DAEMON 失败"; exit 1; }
@@ -174,11 +182,19 @@ uninstall() {
 	/etc/init.d/fs disable 2>/dev/null
 	rm -f /etc/init.d/fs "$DAEMON" "$MANUAL" "$FORCE"
 	set_pwm 0
-	echo "已卸载，风扇已停。要恢复成系统默认的灯：echo default-on > $LED/trigger"
+	echo default-on > "$LED/trigger" 2>/dev/null
+  echo "已卸载，风扇已停。LED 已恢复默认。"
 }
 
 usage() {
-	sed -n '5,14p' "$0" | sed 's/^# \{0,1\}//'
+	cat <<'EOF'
+fs            查看当前温度和风速
+fs 70         手动固定风速 70%（0~100，0=停，100=满速）
+fs auto       改回按温度自动控制
+fs stop       停风扇
+fs start      重新开
+fs uninstall  卸载
+EOF
 }
 
 case "$1" in
@@ -190,9 +206,17 @@ off)		rm -f "$MANUAL"; : > "$FORCE"; set_pwm 0 ;;
 
 status)		show_status ;;
 
-auto)		rm -f "$MANUAL"; : > "$FORCE"; show_status ;;
+auto)		rm -f "$MANUAL"
+        : > /tmp/fan_nodelay
+        : > "$FORCE"
+        if [ -x /etc/init.d/fs ] && ! /etc/init.d/fs running >/dev/null 2>&1; then
+            /etc/init.d/fs start
+            nap 2
+        fi
+        show_status
+        ;;
 
-start)		/etc/init.d/fs start; nap 2; show_status ;;
+start)		: > /tmp/fan_nodelay; /etc/init.d/fs start; nap 2; show_status ;;
 
 stop)		/etc/init.d/fs stop; nap 1; echo "风扇已停。要重新开：fs start" ;;
 

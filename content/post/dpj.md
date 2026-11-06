@@ -14,3 +14,6 @@ pdd上
 ## led 色温灯 H桥驱动模块
 l298n
 大电流 bts7960
+
+## 嘉立创PCB
+[教程](https://www.bilibili.com/video/BV1L5n56QE2Z)

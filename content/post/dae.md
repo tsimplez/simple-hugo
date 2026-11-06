@@ -24,6 +24,11 @@ https://github.com/kenzok8/openwrt-daede
 ## simple
 [规则文件](https://github.com/daeuniverse/dae/blob/main/example.dae)
 dns googledns https://dns.google:443
+
+
+alidns: 'https://8.8.8.8:53'
+googledns: 'udp://223.5.5.5:53'
+
 ```
 # 参考 https://github.com/daeuniverse/dae/blob/main/docs/zh/configuration/routing.md
 # 路由 新增配置

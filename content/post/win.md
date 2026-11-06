@@ -57,7 +57,7 @@ Business editions包括：企业版、教育版、专业版；
 ## 解压
 [winrar](http://www.winrar.com.cn)
 
-## ssh
+## ssh证书
 ```shell
 ssh-keygen -t rsa
 
@@ -208,7 +208,7 @@ C:\Users\xxx\AppData\Local\Microsoft\Edge\User Data\Default\Extensions
 
 ## 压缩工具
 [rar弹窗](https://zhuanlan.zhihu.com/p/680852417)
-[推荐 7-zip](https://www.7-zip.org/download.html)
+[7z 推荐 7-zip](https://www.7-zip.org/download.html)
 ![参考](https://cdn.242499.xyz/2026/04/12/02d56296ead3a25d75a51c8cfcfe3c7e.jpeg)
 
 ## cpu

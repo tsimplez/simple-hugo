@@ -10,6 +10,8 @@ tags:
     - 飞牛
 ---
 
+[字幕](文件管理->管理员视角->设备全部文件->进入你安装飞牛影视的那个存储空间->/@appmeta/trim.media/subtitle)
+
 ## 错误
 SIMPLE wpa_supplicant[926]: nl80211: kernel reports: key addition failed
 journalctl -b -p err | grep -i "nl80211"

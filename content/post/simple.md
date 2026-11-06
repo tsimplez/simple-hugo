@@ -11,7 +11,7 @@ tags:
 
 [全球实况高清摄像头](http://skylinewebcams.com)
 
-[机器翻译](libretranslate)
+[机器本地翻译](https://github.com/LibreTranslate/LibreTranslate)
 
 ## minio rustfs
 https://juejin.cn/post/7523256725127987226

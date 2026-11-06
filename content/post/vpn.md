@@ -14,6 +14,16 @@ https://www.freeclashnode.com/free-node/2025-11-2-free-clash.htm
 
 [统一订阅管理](https://github.com/sub-store-org/Sub-Store)
 
+## 路由器
+[doona教程](https://www.youtube.com/watch?v=gzmbXhQFlqw)
+[dae教程](https://www.youtube.com/watch?v=EL7Q1b6DYoE)
+
+```shell
+honk-core --version
+
+apk list --installed honk 2>/dev/null
+```
+
 ## cf
 ### 优选
 https://github.com/HandsomeMJZ/cfip

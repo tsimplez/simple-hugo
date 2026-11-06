@@ -174,6 +174,10 @@ framework = arduino
 monitor_speed = 74880
 ```
 
+## espressif32
+版本查看
+pio pkg list
+
 ## esp32s3
 [嘉立创开发板](https://wiki.lckfb.com/zh-hans/esp32s3r8n8/)
 

@@ -9,10 +9,10 @@ tags:
     - 下载
 ---
 
-## 下载
+## 下载器
 [参考](https://www.zhihu.com/question/19820075)
 
-[motrix-next](https://github.com/AnInsomniacy/motrix-next/releases/tag/v3.5.1)
+[motrix-next](https://github.com/AnInsomniacy/rayburst)
 
 [在线免费下载视频、音频和图片](https://snapwc.com/zh)
 [在线免费下载视频、音频和图片 库推荐](https://github.com/yt-dlp/yt-dlp)

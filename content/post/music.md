@@ -16,6 +16,11 @@ tags:
 免费lxmusic系列音乐源
 https://github.com/Macrohard0001/lx-ikun-music-sources
 
+## 音源
+[洛雪](https://pan946.com/thread-4152.htm)
+
+[星海](https://zrcdy.dpdns.org/lx/vers.php)
+
 ## 歌
 高质量音乐免费下载
 

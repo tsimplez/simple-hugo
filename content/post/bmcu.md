@@ -1,6 +1,6 @@
 ---
 title: 团子 bmcu-esp
-date: 2026-11-07
+date: 2026-11-06
 slug: bmcu
 categories:
     - bmcu

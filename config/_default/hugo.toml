@@ -3,6 +3,9 @@ locale  = "zh-CN"
 title   = "团子丶大家族"
 theme   = 'hugo-theme-stack'
 
+# Cloudflare Pages 自动将 /wrj.html 映射到 /wrj（本地 Hugo 预览仍显示 .html）。
+uglyURLs = true
+
 # Theme i18n support
 # See i18n folder for available languages
 defaultContentLanguage = "zh"
@@ -15,8 +18,8 @@ hasCJKLanguage         = false
     pagerSize = 5
 
 [permalinks]
-    post = "/p/:slug/"
-    page = "/:slug/"
+    post = "/:slug"
+    page = "/:slug"
 
 [services.disqus]
     shortname = "hugo-theme-stack"

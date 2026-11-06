@@ -1,6 +1,7 @@
 ---
 title: 百度
 date: 2026-04-18
+slug: bd
 categories:
     - 百度
 tags:
